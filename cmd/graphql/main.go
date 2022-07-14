@@ -33,7 +33,8 @@ func handler(schema graphql.Schema) http.HandlerFunc {
 }
 
 func main() {
-	if err := model.InitDB("postgres", "postgres://postgres:pandora@10.95.84.99:25432/graphql?sslmode=disable"); err != nil {
+	dataSource := "postgres://username:password@host:port/database?sslmode=disable"
+	if err := model.InitDB("postgres", dataSource); err != nil {
 		log.Fatal(err)
 	}
 	if err := schema.InitSchema(); err != nil {
