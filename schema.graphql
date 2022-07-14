@@ -21,7 +21,7 @@ type Post {
 type Comment {
   id: ID
   user: User!
-  post: Post!
+  post(id: ID!): Post!
   title: String
   body: String!
 }

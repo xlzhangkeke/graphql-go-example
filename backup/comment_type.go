@@ -49,6 +49,7 @@ func init() {
 			return nil, nil
 		},
 	})
+
 	CommentType.AddFieldConfig("post", &graphql.Field{
 		Type: PostType,
 		Args: graphql.FieldConfigArgument{
