@@ -103,7 +103,7 @@ func (object *BackendUserObject) GetFollowersForUser(id int) ([]*User, error) {
 		if err = rows.Scan(&uid, &email); err != nil {
 			return nil, err
 		}
-		users = append(users, &User{ID: id, Email: email})
+		users = append(users, &User{ID: uid, Email: email})
 	}
 	return users, nil
 }
@@ -131,7 +131,7 @@ func (object *BackendUserObject) GetFolloweesForUser(id int) ([]*User, error) {
 	rows, err := object.db.Query(`
 		SELECT u.id, u.email
 		FROM users AS u, followers AS f
-		WHERE u.id=f.follower_id
+		WHERE u.id=f.followee_id
 		AND f.follower_id=$1
 	`, id)
 	if err != nil {
